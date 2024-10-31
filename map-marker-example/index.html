@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Marker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+    <h2>Map with Marker for Roermond</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Coördinaten die uit het Node.js-script gehaald worden
+        const latitude = 51.1942; // Gebruik de ontvangen breedtegraad
+        const longitude = 5.9935; // Gebruik de ontvangen lengtegraad
+
+        // Initialiseer de kaart
+        const map = L.map('map').setView([latitude, longitude], 13);
+
+        // Voeg een kaartlaag toe
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Voeg een marker toe op de opgehaalde locatie
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup('<b>Roermond</b>')
+            .openPopup();
+    </script>
+</body>
+</html>
